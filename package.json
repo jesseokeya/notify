@@ -32,11 +32,12 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "morgan": "^1.9.0",
     "rand-token": "^0.4.0",
     "sendwithus": "^4.1.0",
     "twilio": "^3.11.0"
   },
   "devDependencies": {
-    "morgan": "^1.9.0"
+    "mocha": "^4.1.0"
   }
 }
