@@ -34,7 +34,10 @@
           <a class="nav-link" href="/api/docs">Docs</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="/">Examples</a>
+          <a class="nav-link" href="/">Endpoints</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Examples</a>
         </li>
       </ul>
       <div class="form-inline my-2 my-lg-0">
@@ -61,6 +64,11 @@
         <a href="https://www.twilio.com" class="list-group-item list-group-item-action bg-app">Twilio api key / account
           <span class="badge badge-info badge-pill">✓</span>
         </a>
+        <br/>
+        <br/>
+        <p class="lead">
+          <a class="btn btn-info btn-md" href="/" role="button">try it out</a>
+        </p>
       </div>
 
     </div>
@@ -77,27 +85,27 @@
       <br/>
       <pre class="code">
         <code>
-          <var>const sendwithus_key = 'valid_sendwithus_apikey';</var>
-          <var>const email_config = {</var>
-            <var>template: 'template_id',</var>
-            <var>recipient: {</var>
-              <var>address: 'jamespaulset@outlook.com'</var>
-            <var>}, </var>
-            <var>template_data: {</var>
-              <var>first_name: 'Jesse' </var>
-            <var>}, </var>
-            <var>sender: { </var>
-              <var>address: 'company@company.com', // required </var>
-              <var>name: 'Company' </var>
-              <var>},</var>
-              <var>esp_account: 'esp_fdxdrvytrrvtrfr_1' // replace with valid esp account</var>
-          <var>}</var>
+  <var>const sendwithus_key = 'valid_sendwithus_apikey';</var>
+  <var>const email_config = {</var>
+    <var>template: 'template_id',</var>
+    <var>recipient: {</var>
+      <var>address: 'jamespaulset@outlook.com'</var>
+    <var>}, </var>
+    <var>template_data: {</var>
+      <var>first_name: 'Jesse' </var>
+    <var>}, </var>
+    <var>sender: { </var>
+      <var>address: 'company@company.com', // required </var>
+      <var>name: 'Company' </var>
+      <var>},</var>
+      <var>esp_account: 'esp_fdxdrvytrrvtrfr_1' // replace with valid esp account</var>
+  <var>}</var>
 
-          <samp>/* expected sample JSON object */</samp>
-          <var> const emailPostRequest = { </var>
-                <var>sendwithus_key: sendwithus_key, </var>
-                <var>email_config: email_config </var>
-          <var>};</var>
+  <samp>/* expected sample JSON object */</samp>
+  <var> const emailPostRequest = { </var>
+        <var>sendwithus_key: sendwithus_key, </var>
+        <var>email_config: email_config </var>
+  <var>};</var>
 
         </code>
       </pre>
@@ -107,23 +115,23 @@
       <br/>
       <pre class="code">
         <code>
-          <sample>/* accountSid and authToken from twilio */</sample>
-          <var>const twilio_config = {</var>
-            <var>accountSid: 'valid_twilio_accountSid',</var>
-            <var>authToken: 'valid_twilio_authToken'</var>
-          <var>}</var>
+  <sample>/* accountSid and authToken from twilio */</sample>
+  <var>const twilio_config = {</var>
+    <var>accountSid: 'valid_twilio_accountSid',</var>
+    <var>authToken: 'valid_twilio_authToken'</var>
+  <var>}</var>
 
-          <var>const message_config = {</var>
-              <var>to: 'customer/users_valid_phone_number',</var>
-              <var>from: 'valid_twilio_phone_number',</var>
-              <var>body: 'message_you_would_like_to_send_to_user/customer'</var>
-          <var>}</var>
+  <var>const message_config = {</var>
+      <var>to: 'customer/users_valid_phone_number',</var>
+      <var>from: 'valid_twilio_phone_number',</var>
+      <var>body: 'message_you_would_like_to_send_to_user/customer'</var>
+  <var>}</var>
 
-          <samp>/* expected sample JSON object */</samp>
-          <var>const textPostRequest = {</var>
-              <var>twilio_config: twilio_config,</var>
-              <var>message_config: message_config</var>
-          <var>}</var>
+  <samp>/* expected sample JSON object */</samp>
+  <var>const textPostRequest = {</var>
+      <var>twilio_config: twilio_config,</var>
+      <var>message_config: message_config</var>
+  <var>}</var>
 
         </code>
       </pre>
@@ -133,12 +141,12 @@
       <br/>
       <pre class="code">
         <code>
-          <var> const token_length = '23'; <var>
+  <var> const token_length = '23'; <var>
 
-          <samp>/* expected sample JSON object */</samp>
-          <var>const generateTokenRequest = {</var>
-             <var>token_length: token_length</var>
-          <var>}</var>
+  <samp>/* expected sample JSON object */</samp>
+  <var>const generateTokenRequest = {</var>
+     <var>token_length: token_length</var>
+  <var>}</var>
         </code>
       </pre>
       <br/>
@@ -148,8 +156,67 @@
       <hr class="my-4">
       <br/>
       <br/>
+    </div>
+    <br/>
+    <br/>
+
+    <div class="jumbotron shadow">
+      <h3 class="display-7">examples</h3>
+      <p class="lead">notify playground send emails and text messages to anyone below ⬇ </p>
+      <hr class="my-4">
+      <br/>
+      <div class="card">
+        <div class="card-header">
+          Send Email
+        </div>
+
+        <div class="card-body">
+          <div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="recipient name">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="recipient email address">
+            </div>
+            <div class="form-group">
+              <textarea placeholder="email message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">send email</button>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      <hr class="my-4">
+
+      <br/>
+      <div class="card">
+        <div class="card-header">
+          Send Text Message
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="recipient phone number">
+            </div>
+            <div class="form-group">
+              <textarea placeholder="text message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">send text message</button>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      <hr class="my-4">
+      <h3 class="display-7">support</h3>
+      <hr class="my-4">
       <p class="lead">
-        <a class="btn btn-info btn-md" href="/" role="button">examples</a>
+        <a class="btn btn-info btn-lg" href="https://github.com/imigrato/notify" role="button">Github</a>
+      </p>
+      <br/>
+      <p class="lead">
+        <a class="btn btn-success btn-lg" href="#" role="button">Patreon</a>
       </p>
     </div>
   </div>
