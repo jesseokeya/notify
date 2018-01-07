@@ -1,0 +1,42 @@
+{
+  "name": "notify",
+  "version": "1.0.0",
+  "description": "Api Endpoints to send emails and texts to clients effortlessly ",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imigrato/notify.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "Chai",
+    "Js",
+    "Sendgrid",
+    "Twilio",
+    "Sendwithus/Mailchimp"
+  ],
+  "author": "Jesse Okeya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imigrato/notify/issues"
+  },
+  "homepage": "https://github.com/imigrato/notify#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "rand-token": "^0.4.0",
+    "sendwithus": "^4.1.0",
+    "twilio": "^3.11.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.0"
+  }
+}

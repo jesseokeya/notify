@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- CSS Dependencies -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/shards.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <a class="navbar-brand" href="/">
+      notify
+      <sup>
+        <span class="badge badge-warning">beta</span>
+      </sup>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/api/docs">Docs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="/">Examples</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+    <br />
+    <div class="jumbotron shadow">
+      <h1 class="display-5">what is notify?</h1>
+      <p class="lead">notify is a light notification service which integrates twilio, sendgrid, and sendwithus apis to send emails, text messages, voice notes and even call users/customers of your application or microservice</p>
+      <hr class="my-4">
+      <h3 class="display-7">what you'll need</h3>
+      <div class="list-group">
+        <a href="https://sendgrid.com" class="list-group-item list-group-item-action bg-app">Sendgrind api key / account
+          <span class="badge badge-info badge-pill">✓</span>
+        </a>
+        <a href="https://www.sendwithus.com" class="list-group-item list-group-item-action bg-app">sendwithus api key (integrated with sendgrid via an esp_account)
+          <span class="badge badge-info badge-pill">✓</span>
+        </a>
+        <a href="https://www.twilio.com" class="list-group-item list-group-item-action bg-app">Twilio api key / account
+          <span class="badge badge-info badge-pill">✓</span>
+        </a>
+      </div>
+
+    </div>
+
+    <br/>
+    <div class="jumbotron shadow">
+      <h1 class="display-5">notify endpoints</h1>
+      <p class="lead">All notify's post requests, get requests and its corresponding params, response and response type</p>
+      <hr class="my-4">
+      <h3 class="display-7">post requests</h3>
+      <hr class="my-4">
+      <button type="button" class="btn btn-warning"><b>/ api / send_email /</b></button>
+      <br/>
+      <br/>
+      <pre class="code">
+        <code>
+          <var>const sendwithus_key = 'valid_sendwithus_apikey';</var>
+          <var>const email_config = {</var>
+            <var>template: 'template_id',</var>
+            <var>recipient: {</var>
+              <var>address: 'jamespaulset@outlook.com'</var>
+            <var>}, </var>
+            <var>template_data: {</var>
+              <var>first_name: 'Jesse' </var>
+            <var>}, </var>
+            <var>sender: { </var>
+              <var>address: 'company@company.com', // required </var>
+              <var>name: 'Company' </var>
+              <var>},</var>
+              <var>esp_account: 'esp_fdxdrvytrrvtrfr_1' // replace with valid esp account</var>
+          <var>}</var>
+
+          <samp>/* expected sample JSON object */</samp>
+          <var> const emailPostRequest = { </var>
+                <var>sendwithus_key: sendwithus_key, </var>
+                <var>email_config: email_config </var>
+          <var>};</var>
+
+        </code>
+      </pre>
+      <br/>
+      <button type="button" class="btn btn-warning"><b>/ api / send_text /</b></button>
+      <br/>
+      <br/>
+      <pre class="code">
+        <code>
+          <sample>/* accountSid and authToken from twilio */</sample>
+          <var>const twilio_config = {</var>
+            <var>accountSid: 'valid_twilio_accountSid',</var>
+            <var>authToken: 'valid_twilio_authToken'</var>
+          <var>}</var>
+
+          <var>const message_config = {</var>
+              <var>to: 'customer/users_valid_phone_number',</var>
+              <var>from: 'valid_twilio_phone_number',</var>
+              <var>body: 'message_you_would_like_to_send_to_user/customer'</var>
+          <var>}</var>
+
+          <samp>/* expected sample JSON object */</samp>
+          <var>const textPostRequest = {</var>
+              <var>twilio_config: twilio_config,</var>
+              <var>message_config: message_config</var>
+          <var>}</var>
+
+        </code>
+      </pre>
+      <br/>
+      <button type="button" class="btn btn-warning"><b>/ api / generate_token /</b></button>
+      <br/>
+      <br/>
+      <pre class="code">
+        <code>
+          <var> const token_length = '23'; <var>
+
+          <samp>/* expected sample JSON object */</samp>
+          <var>const generateTokenRequest = {</var>
+             <var>token_length: token_length</var>
+          <var>}</var>
+        </code>
+      </pre>
+      <br/>
+      <br/>
+      <hr class="my-4">
+      <h3 class="display-7">get requests</h3>
+      <hr class="my-4">
+      <br/>
+      <br/>
+      <p class="lead">
+        <a class="btn btn-info btn-md" href="/" role="button">examples</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="js/shards.js"></script>
+</body>
+
+</html>
