@@ -1,11 +1,19 @@
 const express = require('express');
 const notify = require('./notify');
+const api_keys = require('../config');
 const router = express.Router()
 
+/* GET REQUESTS */
 router.get(['/', '/docs'], (req, res) => {
   res.sendfile('./docs/index.html');
 })
 
+router.get('/api_keys', (req, res) => {
+  res.json(api_keys);
+})
+
+
+/* POST REQUESTS */
 router.post('/send_email', (req, res) => {
   if (req.body) {
     const {sendwithus_key, email_config} = req.body;
