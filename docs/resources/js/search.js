@@ -1,3 +1,5 @@
+let api_keys = null;
+
 $(document).ready(() => {
   if (window.location.href.includes('?')) {
     const search_term = getParameterByName('search');
@@ -12,6 +14,9 @@ $(document).ready(() => {
           : '';
       }
     });
+  });
+  $.get('/api/api_keys', (result) => {
+    api_keys = result;
   });
 });
 

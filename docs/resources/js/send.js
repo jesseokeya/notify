@@ -1,9 +1,6 @@
 // BUG: showSucessMessage() && showErrorMessage()
 const sendText = () => {
-  const twilio_config = {
-    accountSid: 'AC878d81ab8996dadbcab30f23c6d6d99c',
-    authToken: '3ec1fc48324ae30dac05e8c4ba593931'
-  }
+  const {twilio_config} = api_keys;
 
   const message_config = {
     to: $('#recipient_number').val(),
@@ -17,19 +14,39 @@ const sendText = () => {
     message_config
   };
 
-  console.log(textPostRequest);
-  const url = 'https://notify-dev.herokuapp.com/api/send_text';
-
-  $.post(url, textPostRequest, (result) => {
-    console.log(result.statusCode === 200)
-  });
-
+  const url = '/api/send_text';
+  const check = $('#recipient_number').val() !== '';
+  if (check && $('#recipient_text').val() !== '') {
+    $.post(url, textPostRequest, (result) => {
+      if (result.statusCode === 200) {
+        const recipientPhoneNumber = $('#recipient_number').val();
+        $('#text-message').empty();
+        $('#recipient_number').val('');
+        $('#recipient_text').val('');
+        $('#text-message').append(getSuccessMessage(`text message successfully sent to ${recipientPhoneNumber}`));
+      } else {
+        $('#text-message').empty();
+        $('#recipient_number').val('');
+        $('#recipient_text').val('');
+        $('#text-message').append(getErrorMessage(`text message couldn't be sent`));
+      }
+      setTimeout(() => {
+        $('#text-message').empty();
+      }, 3000);
+    });
+  } else {
+    $('#text-message').empty();
+    $('#text-message').append(getErrorMessage(`empty form fields. try again`));
+    setTimeout(() => {
+      $('#text-message').empty();
+    }, 3000);
+  }
 }
 
 const sendEmail = () => {
-  const sendwithus_key = 'live_53edfd950064f5d03df81c836441070f2f92f3ec';
+  const {sendwithus_key, esp_account, template} = api_keys;
   const email_config = {
-    template: 'tem_3JmhvdD7SdwGYg6gGfF8XKjb',
+    template: template,
     recipient: {
       address: `${$('#recipient_email').val()}`
     },
@@ -41,7 +58,7 @@ const sendEmail = () => {
       address: 'no-reply@notify.com', // required
       name: 'notify'
     },
-    esp_account: 'esp_3WcPypVCcQfqb3wF89qgq8HR' // replace with valid esp account
+    esp_account: esp_account // replace with valid esp account
   }
 
   /* expected sample JSON object */
@@ -49,9 +66,41 @@ const sendEmail = () => {
     sendwithus_key,
     email_config
   };
-  const url = 'https://notify-dev.herokuapp.com/api/send_email';
+  const url = '/api/send_email';
+  const check = $('#email_message').val() !== '';
+  if (check && $('#recipient_email').val() !== '' && $('#recipient_name').val() !== '') {
+    $.post(url, emailPostRequest, (result) => {
+      if (result.statusCode === 200) {
+        const recipientEmail = $('#recipient_email').val();
+        $('#email-message-cont').empty();
+        $('#recipient_name').val('');
+        $('#recipient_email').val('');
+        $('#email_message').val('')
+        $('#email-message-cont').append(getSuccessMessage(`email successfully sent to ${recipientEmail}`));
+      } else {
+        $('#email-message-cont').empty();
+        $('#recipient_email').val('');
+        $('#recipient_name').val('');
+        $('#email_message').val('')
+        $('#email-message-cont').append(getErrorMessage(`email couldn't be sent`));
+      }
+      setTimeout(() => {
+        $('#email-message-cont').empty();
+      }, 3000);
+    });
+  } else {
+    $('#email-message-cont').empty();
+    $('#email-message-cont').append(getErrorMessage(`empty form fields. try again`));
+    setTimeout(() => {
+      $('#email-message-cont').empty();
+    }, 3000);
+  }
+}
 
-  $.post(url, emailPostRequest, (result) => {
-    console.log(result.statusCode === 200)
-  });
+const getSuccessMessage = message => {
+  return `<div class="alert alert-success" role="alert">${message}</div>`;
+}
+
+const getErrorMessage = message => {
+  return `<div class="alert alert-danger" role="alert">${message}</div>`;
 }
