@@ -1,7 +1,6 @@
 const express = require('express');
 const notify = require('./notify');
-const api_keys = require('../config');
-const router = express.Router()
+const router = express.Router();
 
 /* GET REQUESTS */
 router.get(['/', '/docs'], (req, res) => {
@@ -9,9 +8,17 @@ router.get(['/', '/docs'], (req, res) => {
 })
 
 router.get('/api_keys', (req, res) => {
+  const api_keys = {
+    twilio_config: {
+      accountSid: process.env.accountSid,
+      authToken: process.env.authToken
+    },
+    sendwithus_key: process.env.sendwithus_key,
+    esp_account: process.env.esp_account,
+    template: process.env.template
+  };
   res.json(api_keys);
 })
-
 
 /* POST REQUESTS */
 router.post('/send_email', (req, res) => {
