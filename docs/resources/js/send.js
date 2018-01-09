@@ -1,4 +1,3 @@
-// BUG: showSucessMessage() && showErrorMessage()
 const sendText = () => {
   const {twilio_config} = api_keys;
 
@@ -71,6 +70,7 @@ const sendEmail = () => {
   if (check && $('#recipient_email').val() !== '' && $('#recipient_name').val() !== '') {
     $.post(url, emailPostRequest, (result) => {
       if (result.statusCode === 200) {
+        console.log(result);
         const recipientEmail = $('#recipient_email').val();
         $('#email-message-cont').empty();
         $('#recipient_name').val('');
@@ -93,6 +93,27 @@ const sendEmail = () => {
     $('#email-message-cont').append(getErrorMessage(`empty form fields. try again`));
     setTimeout(() => {
       $('#email-message-cont').empty();
+    }, 3000);
+  }
+}
+
+const generateToken = () => {
+  const token = $('#token_number').val();
+  const check = /[a-z]/.test(token.toLowerCase());
+  if (token !== '' && Number.isInteger(parseInt(token)) && !check) {
+    const tokenLength = {
+      token_length: token
+    };
+    $.post('/api/generate_token/', tokenLength, (result) => {
+      if(result.statusCode === 200){
+        $('#display_token_number').val(result.token);
+      }
+    });
+  } else {
+    $('#token-message').empty();
+    $('#token-message').append(getErrorMessage(`invalid token length or type. try again`));
+    setTimeout(() => {
+      $('#token-message').empty();
     }, 3000);
   }
 }

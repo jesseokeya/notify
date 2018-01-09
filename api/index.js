@@ -1,10 +1,12 @@
 const express = require('express');
 const notify = require('./notify');
+const path = require('path');
 const router = express.Router();
 
 /* GET REQUESTS */
 router.get(['/', '/docs'], (req, res) => {
-  res.sendfile('./docs/index.html');
+  const filePath = __dirname + '/../docs/index.html';
+  res.sendFile(path.resolve(filePath));
 })
 
 router.get('/api_keys', (req, res) => {

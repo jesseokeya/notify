@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
     <a class="navbar-brand" href="/">
       notify
       <sup>
@@ -30,14 +30,14 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/api/docs">Docs</a>
+        <li class="nav-item docs">
+          <a class="nav-link" href="#docs">Docs</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Endpoints</a>
+        <li class="nav-item endpoints">
+          <a class="nav-link" href="#endpoints">Endpoints</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Examples</a>
+        <li class="nav-item examples">
+          <a class="nav-link" href="#examples">Examples</a>
         </li>
       </ul>
       <div class="form-inline my-2 my-lg-0">
@@ -48,7 +48,12 @@
   </nav>
 
   <div class="container">
-    <br />
+    <div id="docs"></div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     <div class="jumbotron shadow">
       <h1 class="display-5">what is notify?</h1>
       <p class="lead">notify is a light notification service which integrates twilio, sendgrid, and sendwithus apis to send emails, text messages, voice notes and even call users/customers of your application or microservice</p>
@@ -70,10 +75,10 @@
           <a class="btn btn-info btn-md" href="/" role="button">try it out</a>
         </p>
       </div>
-
+      <div id="endpoints"></div>
     </div>
-
     <br/>
+
     <div class="jumbotron shadow">
       <h1 class="display-5">notify endpoints</h1>
       <p class="lead">All notify's post requests, get requests and its corresponding params, response and response type</p>
@@ -155,13 +160,13 @@
       <h3 class="display-7">get requests</h3>
       <hr class="my-4">
       <br/>
+       <h5 class="display-8">coming soon.... </h5>
       <br/>
+      <div id="examples"></div>
     </div>
     <br/>
-    <br/>
-
     <div class="jumbotron shadow">
-      <h3 class="display-7">examples</h3>
+      <h3 class="display-7">notify examples</h3>
       <p class="lead">notify playground send emails and text messages to anyone below ⬇ </p>
       <hr class="my-4">
       <br/>
@@ -209,6 +214,25 @@
         </div>
       </div>
       <br/>
+      <hr class="my-4">
+      <br/>
+      <div class="card">
+        <div class="card-header">
+          Generate Token
+        </div>
+        <div class="card-body">
+          <div id="token-message"></div>
+          <div>
+            <div class="form-group">
+              <input class="form-control" id="token_number" placeholder="token length">
+            </div>
+            <div class="form-group">
+              <input class="form-control" id="display_token_number" placeholder="generated token" readonly>
+            </div>
+            <button onclick="generateToken()" type="submit" class="btn btn-info">generate token</button>
+          </div>
+        </div>
+      </div>
 
       <hr class="my-4">
       <h3 class="display-7">support</h3>
@@ -226,6 +250,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   <script src="js/shards.js"></script>
+  <script src="js/scroll.js"></script>
   <script src="js/highlight.js"></script>
   <script src="js/search.js"></script>
   <script src="js/send.js"></script>

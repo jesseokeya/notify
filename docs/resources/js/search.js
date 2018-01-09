@@ -18,6 +18,20 @@ $(document).ready(() => {
   $.get('/api/api_keys', (result) => {
     api_keys = result;
   });
+  $('.navbar li').click(function(e) {
+    $('.navbar li.active').removeClass('active');
+    var $this = $(this);
+    if (!$this.hasClass('active')) {
+      $this.addClass('active');
+    }
+  });
+  if (window.location.hash.includes('docs')) {
+    $('.docs').addClass('active');
+  } else if (window.location.hash.includes('endpoints')) {
+    $('.endpoints').addClass('active');
+  } else {
+    $('.examples').addClass('active');
+  }
 });
 
 const search = () => {
