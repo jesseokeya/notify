@@ -27,9 +27,11 @@ $(document).ready(() => {
   });
   if (window.location.hash.includes('docs')) {
     $('.docs').addClass('active');
-  } else if (window.location.hash.includes('endpoints')) {
+  }
+  if (window.location.hash.includes('endpoints')) {
     $('.endpoints').addClass('active');
-  } else {
+  }
+  if (window.location.hash.includes('examples')) {
     $('.examples').addClass('active');
   }
 });
